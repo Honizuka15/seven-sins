@@ -85,9 +85,6 @@ jobs:
 
   web:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
       - name: Ranger les fichiers
@@ -113,5 +110,14 @@ jobs:
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist
+
+  # Mise en ligne dans une étape séparée, comme le recommande GitHub
+  deploy:
+    needs: web
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
       - id: deploy
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
