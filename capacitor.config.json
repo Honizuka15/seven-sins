@@ -1,0 +1,6 @@
+{
+  "appId": "com.sevensins.tribunal",
+  "appName": "Seven Sins",
+  "webDir": "dist",
+  "android": { "backgroundColor": "#0b0a0d" }
+}
